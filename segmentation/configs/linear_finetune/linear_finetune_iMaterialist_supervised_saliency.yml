@@ -1,0 +1,40 @@
+# Dataset
+train_db_name: imaterialist-fashion-2020-fgvc7
+train_db_kwargs:
+   split: train
+   batch_size: 16
+val_db_name: imaterialist-fashion-2020-fgvc7
+val_db_kwargs:
+   batch_size: 4
+num_workers: 8
+
+# Model
+backbone: 'resnet50'
+backbone_kwargs:
+   dilated: True
+head: 'deeplab'
+pretraining: /home/vrai/Unsupervised-Semantic-Segmentation/results/pretrain/iMaterialist_supervised_saliency_model/checkpoint.pth.tar
+
+# Optimizer
+epochs: 80
+scheduler: step
+scheduler_kwargs:
+   lr_decay_rate: 0.1
+   lr_decay_epochs: [25]
+
+#optimizer: adam 
+#optimizer_kwargs:
+#   lr: 0.1
+#   weight_decay: 0.0001
+#   momentum: 0.9
+#   nesterov: False
+#freeze_batchnorm: 'all'
+
+optimizer: sgd 
+optimizer_kwargs:
+   lr: 0.1
+   weight_decay: 0.0001
+   momentum: 0.9
+   nesterov: False
+freeze_batchnorm: 'all'
+

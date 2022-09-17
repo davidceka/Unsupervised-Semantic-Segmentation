@@ -1,0 +1,24 @@
+# Dataset
+train_db_name: VOCSegmentation
+val_db_name: VOCSegmentation
+val_db_kwargs:
+  batch_size: 16
+num_workers: 8
+
+# Model
+backbone: 'resnet50'
+backbone_kwargs:
+   dilated: True
+   pretrained: True
+model_kwargs:
+   ndim: 32
+   head: linear
+   upsample: True
+   use_classification_head: True
+head: 'deeplab'
+freeze_layer: 'none'
+pretraining: /home/vrai/Unsupervised-Semantic-Segmentation/results/pretrain/iMaterialist_supervised_saliency_model/checkpoint.pth.tar # Change this.
+kmeans_eval: True
+
+retrieval_kwargs:
+   ignore_classes: ['background']
